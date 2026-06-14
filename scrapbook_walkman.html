@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Mixtape</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Special+Elite&display=swap");
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: #f5ede0;
+        background-image:
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 27px,
+            rgba(180, 140, 100, 0.12) 28px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 27px,
+            rgba(180, 140, 100, 0.08) 28px
+          );
+        min-height: 100vh;
+        font-family: "Caveat", cursive;
+        padding: 2rem 1rem 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 20% 10%,
+            rgba(200, 160, 100, 0.18) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 80% 90%,
+            rgba(180, 120, 80, 0.12) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .page-title {
+        text-align: center;
+        font-family: "Special Elite", serif;
+        font-size: 2.2rem;
+        color: #6b3a2a;
+        margin-bottom: 0.3rem;
+        position: relative;
+        z-index: 1;
+        text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
+        transform: rotate(-1deg);
+      }
+
+      .page-subtitle {
+        text-align: center;
+        font-family: "Caveat", cursive;
+        font-size: 1.1rem;
+        color: #9b6b4a;
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── Walkman ── */
+      .walkman-wrapper {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      .walkman {
+        width: 340px;
+        background: #2a2a2a;
+        border-radius: 18px 18px 24px 24px;
+        box-shadow:
+          0 2px 0 #111 inset,
+          0 -2px 0 #555 inset,
+          4px 4px 20px rgba(0, 0, 0, 0.5),
+          0 0 0 3px #1a1a1a;
+        padding: 14px 18px 18px;
+        position: relative;
+        font-family: "Special Elite", serif;
+      }
+
+      .walkman-brand {
+        font-family: "Special Elite", serif;
+        font-size: 0.75rem;
+        color: #c0a060;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 10px;
+        opacity: 0.8;
+      }
+
+      .cassette-window {
+        background: #111;
+        border-radius: 8px;
+        border: 2px solid #3a3a3a;
+        padding: 10px 12px;
+        margin-bottom: 12px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cassette-window::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.03) 0%,
+          transparent 50%
+        );
+        pointer-events: none;
+      }
+
+      .track-name {
+        font-family: "Special Elite", serif;
+        font-size: 0.8rem;
+        color: #ffd080;
+        text-align: center;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        min-height: 18px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .cassette-reels {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 4px 0;
+      }
+
+      .reel {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #2d2d2d;
+        border: 3px solid #444;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .reel-inner {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #555;
+        border: 2px solid #666;
+        position: relative;
+      }
+
+      .reel-inner::after {
+        content: "";
+        position: absolute;
+        inset: 4px;
+        border-radius: 50%;
+        background: #777;
+      }
+
+      .reel-spokes {
+        position: absolute;
+        inset: 4px;
+        border-radius: 50%;
+      }
+      .reel-spokes::before,
+      .reel-spokes::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 2px;
+        background: #3a3a3a;
+        transform-origin: left center;
+        transform: translateY(-50%) rotate(var(--angle, 0deg));
+      }
+      .reel-spokes::after {
+        --angle: 90deg;
+      }
+
+      .reel.spinning {
+        animation: reelSpin 1s linear infinite;
+      }
+      @keyframes reelSpin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .tape-line {
+        flex: 1;
+        height: 2px;
+        background: #5a3a20;
+        margin: 0 4px;
+        align-self: center;
+        margin-top: 8px;
+      }
+
+      .progress-area {
+        margin-bottom: 12px;
+      }
+
+      .progress-bar-bg {
+        height: 4px;
+        background: #1a1a1a;
+        border-radius: 2px;
+        overflow: hidden;
+        margin-bottom: 6px;
+        cursor: pointer;
+      }
+
+      .progress-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #c0a060, #ffd080);
+        border-radius: 2px;
+        width: 0%;
+        transition: width 0.3s linear;
+      }
+
+      .time-display {
+        display: flex;
+        justify-content: space-between;
+        font-family: "Special Elite", serif;
+        font-size: 0.65rem;
+        color: #666;
+        letter-spacing: 1px;
+      }
+
+      .walkman-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .ctrl-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #3a3a3a;
+        border-top: 1px solid #555;
+        border-bottom: 1px solid #1a1a1a;
+        transition: all 0.15s;
+        color: #aaa;
+      }
+
+      .ctrl-btn:hover {
+        background: #444;
+        color: #ffd080;
+        transform: translateY(-1px);
+      }
+      .ctrl-btn:active {
+        transform: translateY(1px);
+        background: #2a2a2a;
+      }
+
+      .ctrl-btn.play-pause {
+        width: 44px;
+        height: 44px;
+        background: #c0a060;
+        border-top: 1px solid #e0c080;
+        border-bottom: 2px solid #806030;
+        color: #1a1a1a;
+      }
+      .ctrl-btn.play-pause:hover {
+        background: #d0b070;
+        color: #1a1a1a;
+      }
+      .ctrl-btn.play-pause:active {
+        background: #a09050;
+      }
+      .ctrl-btn svg {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+      }
+      .ctrl-btn.play-pause svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .volume-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+
+      .vol-icon {
+        color: #555;
+        font-size: 14px;
+      }
+
+      .vol-slider {
+        flex: 1;
+        height: 4px;
+        -webkit-appearance: none;
+        appearance: none;
+        background: #222;
+        border-radius: 2px;
+        outline: none;
+        cursor: pointer;
+      }
+      .vol-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #c0a060;
+        cursor: pointer;
+      }
+
+      /* ── Track List ── */
+      .track-list-label {
+        font-family: "Special Elite", serif;
+        font-size: 0.65rem;
+        color: #555;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+        text-align: center;
+      }
+
+      .track-list {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        max-height: 180px;
+        overflow-y: auto;
+      }
+
+      @supports (scrollbar-width: thin) {
+        .track-list {
+          scrollbar-width: thin;
+          scrollbar-color: #3a3a3a #1a1a1a;
+        }
+      }
+
+      .track-list::-webkit-scrollbar {
+        width: 4px;
+      }
+      .track-list::-webkit-scrollbar-track {
+        background: #1a1a1a;
+        border-radius: 2px;
+      }
+      .track-list::-webkit-scrollbar-thumb {
+        background: #3a3a3a;
+        border-radius: 2px;
+      }
+
+      .track-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        background: #1e1e1e;
+        border: 1px solid #2a2a2a;
+        transition: all 0.15s;
+      }
+
+      .track-row:hover {
+        background: #2a2a2a;
+        border-color: #c0a060;
+      }
+
+      .track-row.active {
+        background: #2a2010;
+        border-color: #c0a060;
+      }
+
+      .track-num {
+        font-family: "Special Elite", serif;
+        font-size: 0.65rem;
+        color: #555;
+        min-width: 16px;
+        text-align: right;
+      }
+
+      .track-row.active .track-num {
+        color: #c0a060;
+      }
+
+      .track-emoji {
+        font-size: 1rem;
+      }
+
+      .track-info {
+        flex: 1;
+        overflow: hidden;
+      }
+
+      .track-title {
+        font-family: "Caveat", cursive;
+        font-size: 0.88rem;
+        color: #aaa;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .track-row.active .track-title {
+        color: #ffd080;
+      }
+      .track-row:hover .track-title {
+        color: #ddd;
+      }
+
+      .track-indicator {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: transparent;
+        flex-shrink: 0;
+      }
+
+      .track-row.active .track-indicator {
+        background: #c0a060;
+        box-shadow: 0 0 6px #c0a060;
+        animation: pulse 1s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+
+      .sticker-note {
+        position: absolute;
+        bottom: -14px;
+        right: -24px;
+        background: #fffb80;
+        padding: 6px 10px;
+        font-family: "Caveat", cursive;
+        font-size: 0.85rem;
+        color: #554400;
+        transform: rotate(8deg);
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        white-space: nowrap;
+        z-index: 20;
+      }
+
+      .toast {
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%) translateY(60px);
+        background: #6b3a2a;
+        color: #fff;
+        font-family: "Caveat", cursive;
+        font-size: 1rem;
+        padding: 8px 20px;
+        border-radius: 20px;
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 999;
+        pointer-events: none;
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      /* ── Back button ── */
+      .back-btn {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 1.2rem;
+        font-family: "Caveat", cursive;
+        font-size: 1rem;
+        color: #9b6b4a;
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.45);
+        border: 1px solid rgba(180, 140, 100, 0.3);
+        border-radius: 20px;
+        padding: 5px 14px 5px 10px;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .back-btn:hover {
+        background: rgba(255, 255, 255, 0.7);
+        color: #6b3a2a;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="./index.html" class="back-btn"> ←back</a>
+    <div class="page-title">Hidden record</div>
+    <div class="page-subtitle">select track before u play walkman</div>
+
+    <div class="walkman-wrapper">
+      <div class="walkman">
+        <div class="walkman-brand">✦ WALKMAN ✦</div>
+
+        <div class="cassette-window">
+          <div class="track-name" id="trackName">— no track selected —</div>
+          <div class="cassette-reels">
+            <div class="reel" id="reelLeft">
+              <div class="reel-spokes"></div>
+              <div class="reel-inner"></div>
+            </div>
+            <div class="tape-line"></div>
+            <div class="reel" id="reelRight">
+              <div class="reel-spokes"></div>
+              <div class="reel-inner"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="progress-area">
+          <div class="progress-bar-bg" id="progressBg">
+            <div class="progress-bar-fill" id="progressFill"></div>
+          </div>
+          <div class="time-display">
+            <span id="timeCurrent">0:00</span>
+            <span id="timeDuration">0:00</span>
+          </div>
+        </div>
+
+        <div class="walkman-controls">
+          <button class="ctrl-btn" title="Sebelumnya" onclick="prevTrack()">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 20L9 12l10-8v16zM5 4h2v16H5z" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="ctrl-btn play-pause"
+            id="btnPlay"
+            title="Putar/Jeda"
+            onclick="togglePlay()"
+          >
+            <svg id="playIcon" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </button>
+          <button class="ctrl-btn" title="Berikutnya" onclick="nextTrack()">
+            <svg viewBox="0 0 24 24">
+              <path d="M5 4l10 8-10 8V4zm14 0h2v16h-2z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="volume-row">
+          <svg
+            class="vol-icon"
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="#555"
+          >
+            <path
+              d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"
+            />
+          </svg>
+          <input
+            type="range"
+            class="vol-slider"
+            id="volSlider"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.8"
+            aria-label="Volume"
+          />
+          <svg
+            class="vol-icon"
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="#555"
+          >
+            <path
+              d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM18.5 12c0-3.04-1.73-5.64-4.25-6.97v2.28c1.57 1.14 2.5 2.95 2.5 4.69 0 1.74-.93 3.55-2.5 4.69v2.28c2.52-1.33 4.25-3.93 4.25-6.97z"
+            />
+          </svg>
+        </div>
+
+        <div class="track-list-label">▸ tracklist</div>
+        <div class="track-list" id="trackList"></div>
+
+        <div class="sticker-note">play something! 🎶</div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+      // ─────────────────────────────────────────────
+      //  DATA TRACKS
+      //  Isi audioSrc dengan path file MP3 kamu.
+      //  Contoh: "./assets/lagu.mp3"
+      // ─────────────────────────────────────────────
+      const tracks = [
+        {
+          caption: "raixi '26",
+          emoji: "🌅",
+          audioSrc: "./assets/",
+        },
+        {
+          caption: "late night drive",
+          emoji: "🌙",
+          audioSrc: null,
+        },
+      ];
+
+      // ── State ────────────────────────────────────
+      let currentTrack = -1;
+      let isPlaying = false;
+      let audioEl = null;
+
+      // ── Build track list ─────────────────────────
+      function buildTrackList() {
+        const list = document.getElementById("trackList");
+        tracks.forEach((t, i) => {
+          const row = document.createElement("div");
+          row.className = "track-row";
+          row.id = "track-row-" + i;
+          row.onclick = () => selectTrack(i);
+          row.innerHTML = `
+            <span class="track-num">${i + 1}</span>
+            <span class="track-emoji">${t.emoji}</span>
+            <div class="track-info">
+              <div class="track-title">${t.caption}</div>
+            </div>
+            <div class="track-indicator"></div>
+          `;
+          list.appendChild(row);
+        });
+      }
+
+      // ── Audio helpers ────────────────────────────
+      function getOrCreateAudio() {
+        if (!audioEl) {
+          audioEl = new Audio();
+          audioEl.addEventListener("timeupdate", () => {
+            if (!audioEl.duration) return;
+            const ratio = audioEl.currentTime / audioEl.duration;
+            document.getElementById("progressFill").style.width =
+              ratio * 100 + "%";
+            document.getElementById("timeCurrent").textContent = formatTime(
+              Math.floor(audioEl.currentTime),
+            );
+            document.getElementById("timeDuration").textContent = formatTime(
+              Math.floor(audioEl.duration),
+            );
+          });
+          audioEl.addEventListener("ended", () => nextTrack());
+          audioEl.addEventListener("error", () => {
+            showToast("⚠️ File audio tidak ditemukan");
+            stopUI();
+          });
+        }
+        return audioEl;
+      }
+
+      function playAudio(src) {
+        const a = getOrCreateAudio();
+        a.src = src;
+        a.volume = parseFloat(document.getElementById("volSlider").value);
+        a.currentTime = 0;
+        const p = a.play();
+        if (p !== undefined)
+          p.catch(() => {
+            showToast("⚠️ Gagal memutar audio");
+            stopUI();
+          });
+      }
+
+      function pauseAudio() {
+        if (audioEl) audioEl.pause();
+      }
+      function resumeAudio() {
+        if (audioEl) {
+          const p = audioEl.play();
+          if (p) p.catch(() => {});
+        }
+      }
+      function seekAudio(r) {
+        if (audioEl && audioEl.duration)
+          audioEl.currentTime = r * audioEl.duration;
+      }
+
+      // ── Track control ─────────────────────────────
+      function selectTrack(i) {
+        if (currentTrack === i) {
+          togglePlay();
+          return;
+        }
+        pauseAudio();
+        clearActiveUI();
+        currentTrack = i;
+
+        document.getElementById("progressFill").style.width = "0%";
+        document.getElementById("timeCurrent").textContent = "0:00";
+        document.getElementById("timeDuration").textContent = "0:00";
+        document.getElementById("trackName").textContent =
+          tracks[i].emoji + " " + tracks[i].caption;
+        document.getElementById("track-row-" + i).classList.add("active");
+
+        if (tracks[i].audioSrc) {
+          playAudio(tracks[i].audioSrc);
+          isPlaying = true;
+        } else {
+          showToast("📭 Belum ada file audio untuk lagu ini");
+          isPlaying = false;
+        }
+
+        startReels();
+        updatePlayBtn();
+      }
+
+      function togglePlay() {
+        if (currentTrack === -1) return;
+        if (isPlaying) {
+          pauseAudio();
+          isPlaying = false;
+          stopReels();
+        } else {
+          if (tracks[currentTrack].audioSrc) {
+            resumeAudio();
+            isPlaying = true;
+            startReels();
+          } else {
+            showToast("📭 Belum ada file audio untuk lagu ini");
+          }
+        }
+        updatePlayBtn();
+      }
+
+      function prevTrack() {
+        selectTrack(currentTrack <= 0 ? tracks.length - 1 : currentTrack - 1);
+      }
+      function nextTrack() {
+        selectTrack(currentTrack >= tracks.length - 1 ? 0 : currentTrack + 1);
+      }
+
+      // ── UI helpers ────────────────────────────────
+      function clearActiveUI() {
+        document
+          .querySelectorAll(".track-row")
+          .forEach((el) => el.classList.remove("active"));
+      }
+
+      function stopUI() {
+        isPlaying = false;
+        stopReels();
+        updatePlayBtn();
+      }
+
+      function startReels() {
+        document.getElementById("reelLeft").classList.add("spinning");
+        document.getElementById("reelRight").classList.add("spinning");
+      }
+
+      function stopReels() {
+        document.getElementById("reelLeft").classList.remove("spinning");
+        document.getElementById("reelRight").classList.remove("spinning");
+      }
+
+      function updatePlayBtn() {
+        document.getElementById("playIcon").innerHTML = isPlaying
+          ? '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>'
+          : '<path d="M8 5v14l11-7z"/>';
+      }
+
+      function formatTime(s) {
+        const m = Math.floor(s / 60);
+        return m + ":" + (s % 60 < 10 ? "0" : "") + (s % 60);
+      }
+
+      let toastTimer = null;
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => t.classList.remove("show"), 2800);
+      }
+
+      document
+        .getElementById("progressBg")
+        .addEventListener("click", function (e) {
+          if (currentTrack === -1) return;
+          const ratio =
+            (e.clientX - this.getBoundingClientRect().left) / this.offsetWidth;
+          seekAudio(ratio);
+          document.getElementById("progressFill").style.width =
+            ratio * 100 + "%";
+        });
+
+      document
+        .getElementById("volSlider")
+        .addEventListener("input", function () {
+          if (audioEl) audioEl.volume = parseFloat(this.value);
+        });
+
+      buildTrackList();
+    </script>
+  </body>
+</html>

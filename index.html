@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dear, Ariva Kinanti Zalfa.</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="liquid-bg">
+    <audio id="bgMusic" loop>
+      <source src="./src/miab.mp3" type="audio/mpeg" />
+    </audio>
+    <!-- Ambient Blobs -->
+    <div class="blob-container">
+      <div class="liquid-blob blob-1"></div>
+      <div class="liquid-blob blob-2"></div>
+      <div class="liquid-blob blob-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="liquid-glass">
+      <div class="nav-logo">raixi.</div>
+      <div class="nav-links-wrapper">
+        <ul class="nav-links">
+          <li><a href="./kalkulator 2/index.html">Kalkulator</a></li>
+          <li>
+            <a href="#" data-card="rhythms">Dreams</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="nav-actions">
+        <a href="https://wa.me/message/WAM67ZUUIQFOC1"
+          ><button class="btn-buy">Text Me</button></a
+        >
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          ☰
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <div class="mobile-menu-header">
+        <div class="mobile-menu-logo">raixi.</div>
+        <button class="close-btn" id="close-menu" aria-label="Close menu">
+          ✕
+        </button>
+      </div>
+
+      <ul class="mobile-nav-links">
+        <li><a href="./kalkulator 2/index.html">Kalkulator</a></li>
+        <li>
+          <a href="#" data-card="rhythms">Dreams</a>
+        </li>
+      </ul>
+
+      <a href="https://wa.me/message/WAM67ZUUIQFOC1"
+        ><button class="mobile-buy-btn">Text Me</button></a
+      >
+    </div>
+    <div class="welcome-popup" id="welcome-popup">
+      <div class="popup-content liquid-glass">
+        <button class="popup-close" id="popup-close">✕</button>
+
+        <div class="popup-body">
+          <span class="popup-emoji">
+            <img
+              src="./src/My-Melody.png"
+              alt="emoji"
+              class="popup-emoji-img"
+            />
+          </span>
+          <h2>Hi!</h2>
+          <p>
+            Thank you for open this page. I hope you enjoying it.<br />
+            Set your volume 30-50%.
+          </p>
+        </div>
+        <button class="btn-primary" id="popup-open-btn">Open page</button>
+      </div>
+    </div>
+
+    <!-- APPLE-STYLE MODAL - Warna sesuai style kamu -->
+    <div class="apple-modal" id="apple-modal">
+      <div class="modal-inner liquid-glass">
+        <button class="apple-close" id="apple-close">✕</button>
+
+        <div class="modal-icon-big" id="modal-icon-big"></div>
+        <h2 class="modal-title-big" id="modal-title-big"></h2>
+
+        <div class="modal-text" id="modal-text"></div>
+
+        <button class="btn-primary" onclick="closeAppleModal()">Tutup</button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+      <div class="hero">
+        <span class="badge liquid-glass">Hi, How are you today?</span>
+
+        <h1 class="headline">
+          Dear, Kinan.<br />
+          <span class="gradient-text">I just wanna say something to you.</span>
+        </h1>
+
+        <p class="subtext">
+          Scroll down to see the card or click the left button. After you open
+          the all card, click the Lost record button.<br />
+          In header/menu bar explore the Calculator and Dreams content.
+        </p>
+
+        <div class="cta-group">
+          <a href="#firstm" class="btn-primary">Click here</a>
+          <a href="scrapbook_walkman.html" class="btn-ghost">Lost record</a>
+        </div>
+
+        <!-- Cards -->
+        <div class="cards" id="firstm">
+          <div class="card liquid-glass" data-card="1">
+            <span class="card-icon">
+              <img src="./src/melodi3.png" alt="emoji" class="popup-emoji-img"
+            /></span>
+            <h3 class="card-title">First Mail</h3>
+            <p class="card-desc">klik untuk membuka.</p>
+          </div>
+          <div class="card liquid-glass" data-card="2">
+            <span class="card-icon">
+              <img src="./src/melodi2.png" alt="emoji" class="popup-emoji-img"
+            /></span>
+            <h3 class="card-title">Baca judulnya aja...</h3>
+            <p class="card-desc">Klik untuk membuka.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="spacer"></div>
+    <!-- Footer -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-copy">
+          © 2026 RaixiStudio Inc. All rights reserved.
+        </div>
+      </div>
+    </footer>
+    <script src="./script.js"></script>
+  </body>
+</html>
