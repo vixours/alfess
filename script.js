@@ -24,8 +24,7 @@ closeMenu.addEventListener("click", closeMenuFunc);
 const bgMusic = document.getElementById("bgMusic");
 
 if (bgMusic) {
-  // Pengaturan
-  bgMusic.volume = 0.6; // Ubah sesuai keinginan (0.0 - 1.0)
+  bgMusic.volume = 0.6;
   bgMusic.loop = true;
 
   function playBackgroundMusic() {
@@ -34,17 +33,14 @@ if (bgMusic) {
     });
   }
 
-  // Mainkan setelah user berinteraksi (paling efektif)
   document.addEventListener("click", playBackgroundMusic, { once: true });
   document.addEventListener("touchstart", playBackgroundMusic, { once: true });
 
-  // Cadangan: coba mainkan setelah halaman load
   window.addEventListener("load", () => {
     setTimeout(playBackgroundMusic, 1000);
   });
 }
 
-// ====================== WELCOME POP-UP ======================
 const welcomePopup = document.getElementById("welcome-popup");
 const popupClose = document.getElementById("popup-close");
 const popupOpenBtn = document.getElementById("popup-open-btn");
@@ -63,7 +59,6 @@ popupClose.addEventListener("click", closeWelcomePopup);
 
 popupOpenBtn.addEventListener("click", () => {
   closeWelcomePopup();
-  // Scroll ke atas (opsional)
   document.querySelector(".hero").scrollIntoView({ behavior: "smooth" });
 });
 
@@ -71,7 +66,6 @@ welcomePopup.addEventListener("click", (e) => {
   if (e.target === welcomePopup) closeWelcomePopup();
 });
 
-// ====================== APPLE-STYLE MODAL ======================
 const appleModal = document.getElementById("apple-modal");
 const modalIconBig = document.getElementById("modal-icon-big");
 const modalTitleBig = document.getElementById("modal-title-big");
@@ -142,7 +136,6 @@ document.querySelectorAll("a[data-card]").forEach((link) => {
   });
 });
 
-// ── Video & bgMusic sinkronisasi ──
 document.addEventListener(
   "play",
   (e) => {
