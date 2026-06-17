@@ -77,13 +77,17 @@ const appleCardData = {
     icon: `<img src="./src/melodi3.png" alt="emoji" class="popup-emoji-img"/>`,
     title: "First Mail",
     content: `
-            <p>I don't even know if this is the right move, honestly. I've thought about it for a while and I keep talking myself out of it, but then I keep coming back to the same conclusion which is that I'd rather say something and deal with whatever comes after than just keep pretending everything's normal.
-So. Here goes.
-I like you. And I know that probably sounds weird coming from me because we're not even that close like, we exist in the same space, same people, same group chats, but we've never really had a proper conversation just the two of us. Which is maybe why this feels so strange to admit, because it's not like I have a long list of reasons backed up by years of knowing you. It's more like… I've just been paying attention. From the sidelines, I guess.
-And the more I pay attention, the more I notice things about you that I can't really stop thinking about. The way you carry yourself in a room. The things you say when the conversation gets real. The way you treat people not just the ones you're close to, but everyone around you. Small things that probably nobody else clocks, but I do. I always do.
-I'm not trying to make this into a bigger deal than it needs to be. I'm not asking for anything, and I'm definitely not trying to make things weird between us or with everyone else. That's honestly one of the reasons I kept putting this off because the last thing I want is for this to become something that changes the dynamic of everything around us.
-But I also think there's something worse than the risk of it being awkward, and that's just never saying anything at all.
-So if you're open to it even just talking more, getting to know each other properly I'd really like that. And if not, I promise I'm not going to make it a whole thing. I just needed you to know.</p>
+            <p>okay I don't fully know how to say this without it sounding like a bigger deal than I'm trying to make it, but here we go anyway.
+I like you. And honestly? I've been sitting with that for a while now, trying to figure out if it was just me being in my head about things but the more time passes, the more I'm pretty sure it isn't.
+<br>
+Which is a little funny, because we're not even that close. Same circle, same familiar faces, same group of people but not really us, not in the way I think I'd want. And maybe that's part of why I'm saying something at all, because every time we're in the same space I catch myself thinking I want to know what you're actually like. Not just the version of you I see when everyone else is around.
+<br>
+I've noticed things though, even from where I'm standing. The way you talk when you actually mean something. The way you make people around you feel at ease without even trying. Little things that probably don't seem significant but somehow keep adding up. And at some point I stopped being able to chalk it up to nothing.
+<br>
+I'm not trying to put any pressure on this I genuinely mean that. I'm not expecting anything, and I'm not asking you to feel the same way. But I'd be lying if I said I wasn't a little hopeful. Because I think there's something there worth at least being curious about. And I think if we actually gave ourselves the chance to just talk, properly, without everyone else in the background it might turn into something kind of good.
+<br>
+Maybe I'm reading into things. But I don't think I'm entirely off either.
+So yeah. That's it. That's what I wanted to say. And whatever you do with it, I hope at minimum it doesn't make things weird because I do genuinely like having you around, even just the way things are now.</p>
         `,
   },
   2: {
