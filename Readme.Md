@@ -1,6 +1,6 @@
 # 🌸 Alfess
 
-Sebuah proyek web statis interaktif berbasis HTML, CSS, dan JavaScript murni yang dirancang dengan gaya **Apple-Style Glassmorphism UI**. Web ini dibuat khusus dan didedikasikan kepada Ariva Kinanti Zalfa.
+Sebuah proyek web statis interaktif berbasis HTML, CSS, dan JavaScript murni yang dirancang dengan gaya **Apple-Style Glassmorphism UI**. Web ini dibuat khusus dan didedikasikan kepada seseorang.
 
 ---
 
