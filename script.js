@@ -77,8 +77,13 @@ const appleCardData = {
     icon: `<img src="./src/melodi3.png" alt="emoji" class="popup-emoji-img"/>`,
     title: "First Mail",
     content: `
-            <p>Warna-warna yang kaya dan penuh kehidupan. Setiap elemen visual di halaman ini menggunakan saturasi tinggi agar terasa hangat dan emosional.</p>
-            <p>Seperti perasaan aku setiap kali melihat senyummu — cerah, hidup, dan selalu membuat hati berbunga-bunga. Gradasi pink dan ungu yang kamu lihat adalah representasi langsung dari betapa indahnya perasaan ini.</p>
+            <p>I don't even know if this is the right move, honestly. I've thought about it for a while and I keep talking myself out of it, but then I keep coming back to the same conclusion which is that I'd rather say something and deal with whatever comes after than just keep pretending everything's normal.
+So. Here goes.
+I like you. And I know that probably sounds weird coming from me because we're not even that close like, we exist in the same space, same people, same group chats, but we've never really had a proper conversation just the two of us. Which is maybe why this feels so strange to admit, because it's not like I have a long list of reasons backed up by years of knowing you. It's more like… I've just been paying attention. From the sidelines, I guess.
+And the more I pay attention, the more I notice things about you that I can't really stop thinking about. The way you carry yourself in a room. The things you say when the conversation gets real. The way you treat people not just the ones you're close to, but everyone around you. Small things that probably nobody else clocks, but I do. I always do.
+I'm not trying to make this into a bigger deal than it needs to be. I'm not asking for anything, and I'm definitely not trying to make things weird between us or with everyone else. That's honestly one of the reasons I kept putting this off because the last thing I want is for this to become something that changes the dynamic of everything around us.
+But I also think there's something worse than the risk of it being awkward, and that's just never saying anything at all.
+So if you're open to it even just talking more, getting to know each other properly I'd really like that. And if not, I promise I'm not going to make it a whole thing. I just needed you to know.</p>
         `,
   },
   2: {
