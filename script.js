@@ -99,7 +99,7 @@ So yeah. That's it. That's what I wanted to say. And whatever you do with it, I 
   },
   rhythms: {
     title: "Dreams",
-    content: `<video src="./src/inmydreams.mp4" style="width:100%;max-width:400px;border-radius:12px;display:block;margin:0 auto;" controls></video>`,
+    content: `<video src="./src/k.mp4" style="width:100%;max-width:400px;border-radius:12px;display:block;margin:0 auto;" controls></video>`,
   },
 };
 
