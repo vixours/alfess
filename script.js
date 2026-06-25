@@ -77,7 +77,7 @@ const appleCardData = {
     icon: `<img src="./src/melodi3.png" alt="emoji" class="popup-emoji-img"/>`,
     title: "First Mail",
     content: `
-            <p>okay I don't fully know how to say this without it sounding like a bigger deal than I'm trying to make it, but here we go anyway.<br>
+            <p>Maybe you were in love with someone before I said this.<br>Okay I don't fully know how to say this without it sounding like a bigger deal than I'm trying to make it, but here we go anyway.<br>
 I like you. And honestly? I've been sitting with that for a while now, trying to figure out if it was just me being in my head about things but the more time passes, the more I'm pretty sure it isn't.<br>
 Which is a little funny, because we're not even that close. Same circle, same familiar faces, same group of people  but not really us, not in the way I think I'd want. And maybe that's part of why I'm saying something at all, because every time we're in the same space I catch myself thinking I want to know what you're actually like. Not just the version of you I see when everyone else is around.<br>
 I've noticed things though, even from where I'm standing. The way you talk when you actually mean something. The way you make people around you feel at ease without even trying. Little things that probably don't seem significant but somehow keep adding up. And at some point I stopped being able to chalk it up to nothing.<br>
